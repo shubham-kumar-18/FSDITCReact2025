@@ -30,6 +30,7 @@ function App() {
       <button onClick={getServerData}>fetchdata</button>
       {loader?(<h2>Loading...</h2>):<h2>No data loaded</h2>}
       {JSON.stringify(data)}
+      <h3>all good</h3>
     </>
       
   )
