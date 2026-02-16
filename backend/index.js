@@ -1,6 +1,8 @@
 const http=require('http');
+
 const PORT=4002;
 const sum=require('./apiCall')
+const {datawrite,dataread,dataDelete}=require('./usefsmodule');
 const server=http.createServer(async (req,res)=>{
   res.setHeader('Access-Control-Allow-Origin', 'http://localhost:5173');
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
@@ -29,6 +31,16 @@ const server=http.createServer(async (req,res)=>{
      
     res.end(JSON.stringify({msg:"/data post method calling"}))
 
+   }
+   else if(req.url=="/write" && req.method=="GET"){
+    res.setHeader('Content-Type',"application/json")
+    const data=datawrite();
+    res.end(JSON.stringify({msg:data}));
+   }
+    else if(req.url=="/read" && req.method=="GET"){ 
+    res.setHeader('Content-Type',"application/json")
+    const data=dataread();
+    res.end(JSON.stringify({msg:data}));
    }
    else{
     res.setHeader('Content-Type',"text/html")
